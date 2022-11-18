@@ -12,7 +12,7 @@ function App() {
   };
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setInputValue(e.target.value);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -35,6 +35,11 @@ function App() {
           <input type="text" onChange={(e) => handleChange(e)} />
           <input type="submit" value="作成" />
         </form>
+        <ul>
+          {todos.map((todo) => (
+            <li key={todo.id}>{todo.inputValue}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
