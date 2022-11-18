@@ -25,6 +25,17 @@ function App() {
 
     setTodos([newTodo, ...todos]);
     setInputValue("");
+    console.log(todos);
+  };
+
+  const handleEdit = (id: number, inputValue: string) => {
+    const newTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        todo.inputValue = inputValue;
+      }
+      return todo;
+    });
+    setTodos(newTodos);
   };
 
   return (
@@ -37,7 +48,13 @@ function App() {
         </form>
         <ul>
           {todos.map((todo) => (
-            <li key={todo.id}>{todo.inputValue}</li>
+            <li key={todo.id}>
+              <input
+                type="text"
+                onChange={(e) => handleEdit(todo.id, e.target.value)}
+                value={todo.inputValue}
+              />
+            </li>
           ))}
         </ul>
       </div>
